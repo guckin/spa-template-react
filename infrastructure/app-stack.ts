@@ -7,7 +7,6 @@ import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
 import { Construct } from 'constructs';
-import * as path from 'path';
 
 export type TestAppConfig = StackProps & {domainName: string};
 
@@ -23,7 +22,7 @@ export class TestAppStack extends Stack {
         websiteErrorDocument: 'index.html'
     });
 
-    const deployment = new BucketDeployment(this, "TemplateSPADeployment", {
+    new BucketDeployment(this, "TemplateSPADeployment", {
         sources: [
             Source.asset('./dist/ui')
         ],
